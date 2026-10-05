@@ -1,14 +1,15 @@
-# Secrets
+# secrets — never commit
 .env
-.env.*
 
-# Python
+# pipeline artifacts (regenerable / large)
+data/raw_html/
+data/quarantine/
+data/extracted_sections/
+data/observations/
+data/run_manifest.json
+data/llm_spend_ledger.json
+*.xlsx
+!data/source/*.xlsx
+
 __pycache__/
-*.py[cod]
 .pytest_cache/
-.venv/
-venv/
-
-# OS / editor
-.DS_Store
-Thumbs.db
