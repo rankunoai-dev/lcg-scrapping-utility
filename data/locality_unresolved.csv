@@ -1,0 +1,38 @@
+school_id,reason,detail
+68,NOT_IN_RIO,locality=Rye Brook (rankuno_output_20260921_161400.xlsx)
+680,NOT_IN_RIO,locality=Midland (rankuno_output_20260921_161559.xlsx)
+682,NOT_IN_RIO,locality=DeWitt (rankuno_output_20260921_161559.xlsx)
+683,NOT_IN_RIO,locality=Grand Ledge (rankuno_output_20260921_161559.xlsx)
+69,NOT_IN_RIO,locality=Mohegan Lake (rankuno_output_20260921_161400.xlsx)
+70,NOT_IN_RIO,locality=Latham (rankuno_output_20260921_161400.xlsx)
+71,NOT_IN_RIO,locality=Schenectady (rankuno_output_20260921_161400.xlsx)
+911,NOT_IN_RIO,locality=Third Avenue (rankuno_output_20260921_161655.xlsx)
+0068,NO_LOCATED_IN,"Rye Brook, NY (Childtime)"
+0069,NO_LOCATED_IN,"Mohegan Lake, NY (Childtime)"
+0070,NO_LOCATED_IN,"Latham, NY (Childtime)"
+0071,NO_LOCATED_IN,"Schenectady, NY (Childtime)"
+0680,NO_LOCATED_IN,"Midland, MI (ATGW)"
+0682,NO_LOCATED_IN,"DeWitt, MI (Childtime)"
+0683,NO_LOCATED_IN,"Grand Ledge, MI (Childtime)"
+0911,NO_LOCATED_IN,"Longview, WA (Childtime)"
+33,NO_LOCATED_IN,"Clifton Park, NY (Childtime)"
+4909,NO_LOCATED_IN,"Grimes, IA (Everbrook Academy)"
+53,NO_LOCATED_IN,"Clifton Park, NY (Childtime)"
+539,NO_LOCATED_IN,"Liberty Twp, OH (Childtime)"
+54,NO_LOCATED_IN,"Queensbury, NY (Childtime)"
+540,NO_LOCATED_IN,"Liberty Twp, OH (Childtime)"
+613,NO_LOCATED_IN,"Canton, MI (Childtime)"
+617,NO_LOCATED_IN,"Shelby Township, MI (Childtime)"
+6195,NO_LOCATED_IN,"West Chester, OH (Tutor Time)"
+6206,NO_LOCATED_IN,"West Bloomfield, MI (Everbrook Academy)"
+6238,NO_LOCATED_IN,"Canton, MI (Tutor Time)"
+627,NO_LOCATED_IN,"Commerce Township, MI (Childtime)"
+6307,NO_LOCATED_IN,"Commerce, MI (Tutor Time)"
+631,NO_LOCATED_IN,"Canton, MI (Childtime)"
+64,NO_LOCATED_IN,"Clifton Park, NY (Childtime)"
+6401,NO_LOCATED_IN,"Shelby Township, MI (Tutor Time)"
+643,NO_LOCATED_IN,"Shelby Township, MI (Childtime)"
+6457,NO_LOCATED_IN,"Canton, MI (Tutor Time)"
+676,NO_LOCATED_IN,"Commerce Charter Twp, MI (ATGW)"
+7083,NO_LOCATED_IN,"West Chester, OH (La Petite Academy)"
+9708,NO_LOCATED_IN,"Pittsburgh, PA (La Petite Academy)"

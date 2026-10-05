@@ -1,0 +1,101 @@
+{
+ "3900": {
+  "attempts": 5,
+  "state": "FETCHED",
+  "updated_at": "2026-10-05T09:19:53+00:00",
+  "cache_hit": false,
+  "final_url": "https://www.montessori.com/montessori-schools/bedford-tx-3900/",
+  "http_status": 200,
+  "content_length": 164895
+ },
+ "656": {
+  "attempts": 4,
+  "state": "FETCHED",
+  "updated_at": "2026-10-05T08:40:53+00:00",
+  "cache_hit": true,
+  "final_url": "https://www.gildenwoods.com/your-local-school/kentwood-mi-0656/",
+  "http_status": 200,
+  "content_length": 90504
+ },
+ "3003": {
+  "attempts": 5,
+  "state": "FETCHED",
+  "updated_at": "2026-10-05T09:19:56+00:00",
+  "cache_hit": false,
+  "final_url": "https://www.childrenscourtyard.com/your-local-school/arlington-tx-3003/",
+  "http_status": 200,
+  "content_length": 165186
+ },
+ "2": {
+  "attempts": 9,
+  "state": "FETCHED",
+  "updated_at": "2026-10-05T09:19:56+00:00",
+  "cache_hit": false,
+  "final_url": "https://www.childtime.com/your-local-school/fairport-ny-0002/",
+  "http_status": 200,
+  "content_length": 156675
+ },
+ "4001": {
+  "attempts": 5,
+  "state": "FETCHED",
+  "updated_at": "2026-10-05T09:19:58+00:00",
+  "cache_hit": false,
+  "final_url": "https://www.everbrookacademy.com/our-schools/arlington-va-4001/",
+  "http_status": 200,
+  "content_length": 164000
+ },
+ "4832": {
+  "attempts": 5,
+  "state": "FETCHED",
+  "updated_at": "2026-10-05T09:19:59+00:00",
+  "cache_hit": false,
+  "final_url": "https://www.u-gro.com/your-local-school/lititz-pa-4832/",
+  "http_status": 200,
+  "content_length": 125853
+ },
+ "6001": {
+  "attempts": 5,
+  "state": "FETCHED",
+  "updated_at": "2026-10-05T09:20:17+00:00",
+  "cache_hit": false,
+  "final_url": "https://www.tutortime.com/your-local-school/anaheim-hills-ca-6001/",
+  "http_status": 200,
+  "content_length": 164906
+ },
+ "6701": {
+  "attempts": 5,
+  "state": "FETCHED",
+  "updated_at": "2026-10-05T09:20:20+00:00",
+  "cache_hit": false,
+  "final_url": "https://www.creativekidslearningcenter.com/schools/las-vegas-nv-6701/",
+  "http_status": 200,
+  "content_length": 156930
+ },
+ "4848": {
+  "attempts": 5,
+  "state": "FETCHED",
+  "updated_at": "2026-10-05T09:20:13+00:00",
+  "cache_hit": false,
+  "final_url": "https://www.youngschool.com/your-local-school/ellicott-city-md-4848/",
+  "http_status": 200,
+  "content_length": 132482
+ },
+ "7440": {
+  "attempts": 8,
+  "state": "FETCHED",
+  "updated_at": "2026-10-05T09:20:27+00:00",
+  "cache_hit": false,
+  "final_url": "https://www.lapetite.com/your-local-school/jacksonville-fl-7440/",
+  "http_status": 200,
+  "content_length": 179495
+ },
+ "9301": {
+  "attempts": 5,
+  "state": "FETCHED",
+  "updated_at": "2026-10-05T09:20:22+00:00",
+  "cache_hit": false,
+  "final_url": "https://www.pathwayslearningacademy.com/your-local-school/indianapolis-in-9301/",
+  "http_status": 200,
+  "content_length": 122918
+ }
+}

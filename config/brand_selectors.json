@@ -1,0 +1,25 @@
+{
+  "_note": "Verified 2026-10-05 against 1 rendered page per brand domain: ALL 11 brands share the LCG platform template (section > div.welcomeMessage > div.row > div.welcome-content > h2 'Welcome to Our School'), Montessori and Everbrook included. 'default' therefore covers the network; add per-brand overrides under 'brands' only if the full 1,113-page run surfaces variants. Boilerplate selectors are removed from the body channel and collected into the boilerplate channel.",
+  "default": {
+    "welcome_selectors": [
+      "div.welcomeMessage div.welcome-content",
+      "div.welcomeMessage"
+    ],
+    "welcome_heading_patterns": [
+      "^welcome to our school$",
+      "^welcome to our",
+      "^welcome to\\b",
+      "^welcome\\b"
+    ]
+  },
+  "brands": {},
+  "boilerplate_selectors": [
+    "header", "footer", "nav",
+    ".modal", ".ots_modal",
+    "[id*='onetrust']", "[class*='cookie']", "[id*='cookie']", "[class*='consent']",
+    ".breadcrumb", "[class*='breadcrumb']",
+    "[class*='nearbySchool']", "[class*='nearby-school']", "[class*='other-schools']"
+  ],
+  "welcome_min_words": 30,
+  "welcome_max_body_fraction": 0.6
+}

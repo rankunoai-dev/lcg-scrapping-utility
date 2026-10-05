@@ -1,0 +1,224 @@
+{
+  "generated_at": "2026-10-05T07:06:26+00:00",
+  "source_file": "data\\source\\RIO_Location_Export.xlsx",
+  "source_sha256": "4f63ea16e676254ecc458ea850b6aab0af7c132cc0df275ed0c04258fa113a29",
+  "row_count": 1113,
+  "brand_counts": {
+    "La Petite Academy": 461,
+    "Childtime": 249,
+    "Tutor Time": 122,
+    "The Childrens Courtyard": 99,
+    "Everbrook Academy": 85,
+    "Montessori Unlimited": 28,
+    "ATGW": 23,
+    "Pathways Learning Academy": 16,
+    "U Gro": 14,
+    "Creative Kids": 10,
+    "Young School": 6
+  },
+  "flag_counts": {
+    "CITY_URL_MISMATCH": 20,
+    "URL_PATTERN_OTHER": 12,
+    "DATA_DUP_URL": 4,
+    "ID_URL_MISMATCH": 4,
+    "STATE_URL_MISMATCH": 2,
+    "BRAND_MISSING": 1,
+    "BRAND_INFERRED_FROM_DOMAIN": 1,
+    "MISSING_LATLNG": 1
+  },
+  "duplicate_urls": [
+    "https://www.childtime.com/your-local-school/chicago-il-9108/",
+    "https://www.tutortime.com/your-local-school/middle-island-ny-6684/"
+  ],
+  "flagged_rows": [
+    {
+      "school_id": "65",
+      "city": "Brooklyn",
+      "state": "NY",
+      "url": "https://www.childtime.com/your-local-school/sunset-park-ny-0065/",
+      "flags": "CITY_URL_MISMATCH"
+    },
+    {
+      "school_id": "646",
+      "city": "Holland",
+      "state": "MI",
+      "url": "https://www.childtime.com/your-local-school/chicago-il-9108/",
+      "flags": "DATA_DUP_URL;CITY_URL_MISMATCH;STATE_URL_MISMATCH;ID_URL_MISMATCH"
+    },
+    {
+      "school_id": "1707",
+      "city": "Omaha",
+      "state": "NE",
+      "url": "https://www.childtime.com/your-local-school/elkhorn-ne-1707/",
+      "flags": "CITY_URL_MISMATCH"
+    },
+    {
+      "school_id": "3212",
+      "city": "Harrisburg",
+      "state": "NC",
+      "url": "https://www.childrenscourtyard.com/your-local-school/harrisburg-nc-3212/",
+      "flags": "BRAND_MISSING;BRAND_INFERRED_FROM_DOMAIN"
+    },
+    {
+      "school_id": "3221",
+      "city": "Lacey North",
+      "state": "WA",
+      "url": "https://www.childrenscourtyard.com/your-local-school/lacey-wa-3221/",
+      "flags": "CITY_URL_MISMATCH"
+    },
+    {
+      "school_id": "3222",
+      "city": "Lacey South",
+      "state": "WA",
+      "url": "https://www.childrenscourtyard.com/your-local-school/lacey-wa-3222/",
+      "flags": "CITY_URL_MISMATCH"
+    },
+    {
+      "school_id": "3247",
+      "city": "Fayetteville",
+      "state": "NC",
+      "url": "https://www.childrenscourtyard.com/your-local-school/hope-mills-nc-3247/",
+      "flags": "CITY_URL_MISMATCH"
+    },
+    {
+      "school_id": "3249",
+      "city": "Carthage",
+      "state": "NC",
+      "url": "https://www.childrenscourtyard.com/your-local-school/southern-pines-nc-3249/",
+      "flags": "CITY_URL_MISMATCH"
+    },
+    {
+      "school_id": "4608",
+      "city": "Charlotte",
+      "state": "NC",
+      "url": "https://www.everbrookacademy.com/our-schools/charlotte-va-4608/",
+      "flags": "STATE_URL_MISMATCH"
+    },
+    {
+      "school_id": "4889",
+      "city": "Chatlotte",
+      "state": "NC",
+      "url": "https://www.everbrookacademy.com/our-schools/charlotte-nc-4889/",
+      "flags": "CITY_URL_MISMATCH"
+    },
+    {
+      "school_id": "4891",
+      "city": "Cambridge",
+      "state": "MA",
+      "url": "https://www.everbrookacademy.com/our-schools/dot-ma-4891/",
+      "flags": "CITY_URL_MISMATCH"
+    },
+    {
+      "school_id": "4909",
+      "city": "Grimes",
+      "state": "IA",
+      "url": "https://www.everbrookacademy.com/our-schools/grimes-ia-4909/",
+      "flags": "MISSING_LATLNG"
+    },
+    {
+      "school_id": "6041",
+      "city": "Jacksonville",
+      "state": "FL",
+      "url": "https://www.childrenscourtyard.com/your-local-school/windsor-commons-court-fl-6041/",
+      "flags": "CITY_URL_MISMATCH"
+    },
+    {
+      "school_id": "6042",
+      "city": "Jacksonville",
+      "state": "FL",
+      "url": "https://www.childrenscourtyard.com/your-local-school/watermill-blvd-south-fl-6042/",
+      "flags": "CITY_URL_MISMATCH"
+    },
+    {
+      "school_id": "6193",
+      "city": "Dublin",
+      "state": "OH",
+      "url": "https://www.tutortime.com/your-local-school/dublin-oh-6056/",
+      "flags": "ID_URL_MISMATCH"
+    },
+    {
+      "school_id": "6194",
+      "city": "Powell",
+      "state": "OH",
+      "url": "https://www.tutortime.com/your-local-school/powell-oh-6625/",
+      "flags": "ID_URL_MISMATCH"
+    },
+    {
+      "school_id": "6209",
+      "city": "Jacksonville",
+      "state": "FL",
+      "url": "https://www.childrenscourtyard.com/your-local-school/lady-lake-road-fl-6209/",
+      "flags": "CITY_URL_MISMATCH"
+    },
+    {
+      "school_id": "6357",
+      "city": "Brooklyn Park",
+      "state": "MN",
+      "url": "https://www.tutortime.com/your-local-school/champlin-mn-6357/",
+      "flags": "CITY_URL_MISMATCH"
+    },
+    {
+      "school_id": "6684",
+      "city": "Middle Island",
+      "state": "NY",
+      "url": "https://www.tutortime.com/your-local-school/middle-island-ny-6684/",
+      "flags": "DATA_DUP_URL"
+    },
+    {
+      "school_id": "6685",
+      "city": "Coram",
+      "state": "NY",
+      "url": "https://www.tutortime.com/your-local-school/middle-island-ny-6684/",
+      "flags": "DATA_DUP_URL;CITY_URL_MISMATCH;ID_URL_MISMATCH"
+    },
+    {
+      "school_id": "7379",
+      "city": "Hunters Creek",
+      "state": "FL",
+      "url": "https://www.lapetite.com/your-local-school/orlando-fl-7379/",
+      "flags": "CITY_URL_MISMATCH"
+    },
+    {
+      "school_id": "7740",
+      "city": "San Ramon",
+      "state": "CA",
+      "url": "https://www.lapetite.com/your-local-school/dougherty-valley-ca-7740/",
+      "flags": "CITY_URL_MISMATCH"
+    },
+    {
+      "school_id": "7746",
+      "city": "Nottingham",
+      "state": "MD",
+      "url": "https://www.lapetite.com/your-local-school/parkville-md-7746/",
+      "flags": "CITY_URL_MISMATCH"
+    },
+    {
+      "school_id": "7747",
+      "city": "Baltimore",
+      "state": "MD",
+      "url": "https://www.lapetite.com/your-local-school/woodlawn-area-md-7747/",
+      "flags": "CITY_URL_MISMATCH"
+    },
+    {
+      "school_id": "7749",
+      "city": "Green Bay",
+      "state": "WI",
+      "url": "https://www.lapetite.com/your-local-school/cardinal-lane-wi-7749/",
+      "flags": "CITY_URL_MISMATCH"
+    },
+    {
+      "school_id": "9108",
+      "city": "Chicago",
+      "state": "IL",
+      "url": "https://www.childtime.com/your-local-school/chicago-il-9108/",
+      "flags": "DATA_DUP_URL"
+    },
+    {
+      "school_id": "9322",
+      "city": "Sachse",
+      "state": "TX",
+      "url": "https://www.pathwayslearningacademy.com/your-local-school/woodbridge-tx-9322/",
+      "flags": "CITY_URL_MISMATCH"
+    }
+  ]
+}

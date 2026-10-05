@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-10-05T07:06:55+00:00",
+  "files_scanned": 51,
+  "snapshot_hash": "4b783a64f0ba22895a61634dc33f9f942d1c2fa06db8ef597901ea7952c28f50",
+  "split": {
+    "register_true_localities": 354,
+    "city_duplicates_na_cohort": 730,
+    "unresolved": {
+      "NOT_IN_RIO": 8,
+      "NO_LOCATED_IN": 29
+    }
+  },
+  "schools_with_multiple_located_in": [],
+  "approvals": {
+    "approved": 0,
+    "pending": 354,
+    "rejected": 0,
+    "drift": []
+  },
+  "auto_review_flag_counts": {
+    "REVIEW_SEO_FLAG": 12,
+    "REVIEW_SUBDIVISION_LIKE": 75,
+    "REVIEW_CITY_VARIANT": 61
+  },
+  "nearby_diagnostics": {
+    "schools": 1112,
+    "pairs": 4877
+  }
+}

@@ -1,0 +1,646 @@
+{
+  "parameters": [
+    {
+      "id": "GEO_01",
+      "name": "School Name",
+      "category": "GEO",
+      "detection_method": "deterministic",
+      "priority": "Medium",
+      "weight": 4.0,
+      "must_have": true,
+      "ground_truth_field": "school_name",
+      "description": "Full branded school name (e.g. La Petite Academy of West Ashley)"
+    },
+    {
+      "id": "GEO_02",
+      "name": "City",
+      "category": "GEO",
+      "detection_method": "deterministic",
+      "priority": "High",
+      "weight": 4.0,
+      "must_have": true,
+      "ground_truth_field": "city",
+      "description": "Exact target city name (e.g. Jacksonville, Charleston)"
+    },
+    {
+      "id": "GEO_03",
+      "name": "State",
+      "category": "GEO",
+      "detection_method": "deterministic",
+      "priority": "High",
+      "weight": 4.0,
+      "must_have": true,
+      "ground_truth_field": "state",
+      "description": "State abbreviation or full state name (e.g. FL, Florida)"
+    },
+    {
+      "id": "GEO_04",
+      "name": "Locality / Community Name",
+      "category": "GEO",
+      "detection_method": "hybrid",
+      "priority": "High",
+      "weight": 4.0,
+      "must_have": true,
+      "ground_truth_field": "locality",
+      "description": "Sub-city neighborhood/community term (e.g. West Ashley, Buckhead)"
+    },
+    {
+      "id": "GEO_05",
+      "name": "Street Address",
+      "category": "GEO",
+      "detection_method": "deterministic",
+      "priority": "High",
+      "weight": 4.0,
+      "must_have": true,
+      "ground_truth_field": "street_address",
+      "description": "Exact street name or physical address (e.g. Beach Boulevard)"
+    },
+    {
+      "id": "GEO_06",
+      "name": "Landmark 1 (Required)",
+      "category": "GEO",
+      "detection_method": "semantic",
+      "priority": "High",
+      "weight": 4.0,
+      "must_have": true,
+      "description": "Primary local proof point or landmark (e.g. across from Denny's, near Willow Creek Park)"
+    },
+    {
+      "id": "GEO_07",
+      "name": "Landmark 2 (Optional)",
+      "category": "GEO",
+      "detection_method": "semantic",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "description": "Secondary local proof point (e.g. between Park Ave and Ashley River Rd)"
+    },
+    {
+      "id": "LEAD_01",
+      "name": "Director Name",
+      "category": "GEO",
+      "detection_method": "hybrid",
+      "priority": "Medium",
+      "weight": 1.5,
+      "must_have": false,
+      "description": "Named leadership E-E-A-T signal (e.g. Director Jane Smith)"
+    },
+    {
+      "id": "LEAD_02",
+      "name": "Director Experience Years",
+      "category": "GEO",
+      "detection_method": "hybrid",
+      "priority": "Medium",
+      "weight": 1.5,
+      "must_have": false,
+      "description": "Quantified director tenure (e.g. 15 years in early education)"
+    },
+    {
+      "id": "LEAD_03",
+      "name": "Years Serving Community",
+      "category": "GEO",
+      "detection_method": "hybrid",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "description": "School longevity in community (e.g. serving Jacksonville families since 1991)"
+    },
+    {
+      "id": "QUAL_01",
+      "name": "Accreditation",
+      "category": "GEO",
+      "detection_method": "semantic",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "description": "Formal accreditation (e.g. NECPA, Gold Seal Quality Care, NAEYC)"
+    },
+    {
+      "id": "QUAL_02",
+      "name": "Certifications",
+      "category": "GEO",
+      "detection_method": "semantic",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "description": "Staff/facility certifications (e.g. CPR, First Aid, State certified)"
+    },
+    {
+      "id": "QUAL_03",
+      "name": "Awards",
+      "category": "GEO",
+      "detection_method": "semantic",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "description": "Local or national recognition/awards"
+    },
+    {
+      "id": "QUAL_04",
+      "name": "Teacher Tenure / Retention",
+      "category": "GEO",
+      "detection_method": "semantic",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "description": "Staff stability metrics (e.g. teachers with 10+ years tenure)"
+    },
+    {
+      "id": "FAC_01",
+      "name": "Facility Highlight",
+      "category": "GEO",
+      "detection_method": "semantic",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "description": "Specific campus feature (e.g. STEAM Studio, shaded playground, indoor gym)"
+    },
+    {
+      "id": "TECH_01",
+      "name": "Technology Feature",
+      "category": "GEO",
+      "detection_method": "deterministic",
+      "priority": "Medium",
+      "weight": 1.5,
+      "must_have": false,
+      "description": "App technology: SproutAbout® (all brands except MU) or Montessori Compass (MU)"
+    },
+    {
+      "id": "SAFE_01",
+      "name": "Safety Feature",
+      "category": "GEO",
+      "detection_method": "semantic",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "description": "Physical/digital security (e.g. keypad entry, secure check-in, cameras)"
+    },
+    {
+      "id": "KW_01",
+      "name": "Daycare",
+      "category": "KEYWORDS_HEAD",
+      "detection_method": "hybrid",
+      "priority": "High",
+      "weight": 4.0,
+      "must_have": true,
+      "variants": [
+        "daycare",
+        "day care",
+        "day-care"
+      ],
+      "description": "Primary keyword: daycare variants"
+    },
+    {
+      "id": "KW_02",
+      "name": "Preschool",
+      "category": "KEYWORDS_HEAD",
+      "detection_method": "hybrid",
+      "priority": "High",
+      "weight": 4.0,
+      "must_have": true,
+      "variants": [
+        "preschool",
+        "pre-school",
+        "pre-k",
+        "prek",
+        "pre-kindergarten"
+      ],
+      "description": "Primary keyword: preschool variants"
+    },
+    {
+      "id": "KW_03",
+      "name": "Childcare",
+      "category": "KEYWORDS_HEAD",
+      "detection_method": "hybrid",
+      "priority": "High",
+      "weight": 4.0,
+      "must_have": true,
+      "variants": [
+        "childcare",
+        "child care",
+        "child-care"
+      ],
+      "description": "Primary keyword: childcare variants"
+    },
+    {
+      "id": "KW_04",
+      "name": "Early Education",
+      "category": "KEYWORDS_HEAD",
+      "detection_method": "hybrid",
+      "priority": "High",
+      "weight": 4.0,
+      "must_have": true,
+      "variants": [
+        "early education",
+        "early learning"
+      ],
+      "description": "Primary keyword: early education variants"
+    },
+    {
+      "id": "KW_05",
+      "name": "Flexible / Drop-in Care",
+      "category": "KEYWORDS_HEAD",
+      "detection_method": "hybrid",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "variants": [
+        "flexible care",
+        "part-time care",
+        "part time care",
+        "drop-in care",
+        "drop-in child care",
+        "flexcare",
+        "flex care"
+      ],
+      "description": "Primary keyword: flexible/drop-in care options",
+      "variant_note": "bare drop-in removed: false-positives on drop in for a tour; paraphrases handled by semantic pass"
+    },
+    {
+      "id": "SKW_01",
+      "name": "early education",
+      "category": "SEMANTIC_KEYWORDS",
+      "detection_method": "hybrid",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "variants": [
+        "early education"
+      ]
+    },
+    {
+      "id": "SKW_02",
+      "name": "child care",
+      "category": "SEMANTIC_KEYWORDS",
+      "detection_method": "hybrid",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "variants": [
+        "child care",
+        "childcare"
+      ]
+    },
+    {
+      "id": "SKW_03",
+      "name": "flexible daycare",
+      "category": "SEMANTIC_KEYWORDS",
+      "detection_method": "hybrid",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "variants": [
+        "flexible daycare",
+        "flexible day care"
+      ]
+    },
+    {
+      "id": "SKW_04",
+      "name": "kindergarten readiness",
+      "category": "SEMANTIC_KEYWORDS",
+      "detection_method": "hybrid",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "variants": [
+        "kindergarten readiness"
+      ]
+    },
+    {
+      "id": "SKW_05",
+      "name": "learning center",
+      "category": "SEMANTIC_KEYWORDS",
+      "detection_method": "hybrid",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "variants": [
+        "learning center",
+        "learning centre"
+      ]
+    },
+    {
+      "id": "SKW_06",
+      "name": "early childhood education",
+      "category": "SEMANTIC_KEYWORDS",
+      "detection_method": "hybrid",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "variants": [
+        "early childhood education"
+      ]
+    },
+    {
+      "id": "SKW_07",
+      "name": "licensed child care",
+      "category": "SEMANTIC_KEYWORDS",
+      "detection_method": "hybrid",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "variants": [
+        "licensed child care",
+        "licensed childcare"
+      ]
+    },
+    {
+      "id": "SKW_08",
+      "name": "developmental milestones",
+      "category": "SEMANTIC_KEYWORDS",
+      "detection_method": "hybrid",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "variants": [
+        "developmental milestones",
+        "developmental milestone"
+      ]
+    },
+    {
+      "id": "SKW_09",
+      "name": "individualized learning",
+      "category": "SEMANTIC_KEYWORDS",
+      "detection_method": "hybrid",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "variants": [
+        "individualized learning",
+        "individualised learning"
+      ]
+    },
+    {
+      "id": "SKW_10",
+      "name": "tuition assistance",
+      "category": "SEMANTIC_KEYWORDS",
+      "detection_method": "hybrid",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "variants": [
+        "tuition assistance"
+      ]
+    },
+    {
+      "id": "SKW_11",
+      "name": "locally rooted school",
+      "category": "SEMANTIC_KEYWORDS",
+      "detection_method": "hybrid",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "variants": [
+        "locally rooted school",
+        "locally rooted"
+      ]
+    },
+    {
+      "id": "SKW_12",
+      "name": "age-appropriate learning",
+      "category": "SEMANTIC_KEYWORDS",
+      "detection_method": "hybrid",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "variants": [
+        "age-appropriate learning"
+      ]
+    },
+    {
+      "id": "SKW_13",
+      "name": "creative learning",
+      "category": "SEMANTIC_KEYWORDS",
+      "detection_method": "hybrid",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "variants": [
+        "creative learning"
+      ]
+    },
+    {
+      "id": "SKW_14",
+      "name": "early childhood development",
+      "category": "SEMANTIC_KEYWORDS",
+      "detection_method": "hybrid",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "variants": [
+        "early childhood development"
+      ]
+    },
+    {
+      "id": "SKW_15",
+      "name": "foundational skills",
+      "category": "SEMANTIC_KEYWORDS",
+      "detection_method": "hybrid",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "variants": [
+        "foundational skills"
+      ]
+    },
+    {
+      "id": "SKW_16",
+      "name": "near you",
+      "category": "SEMANTIC_KEYWORDS",
+      "detection_method": "hybrid",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "variants": [
+        "near you"
+      ]
+    },
+    {
+      "id": "SKW_17",
+      "name": "affordable",
+      "category": "SEMANTIC_KEYWORDS",
+      "detection_method": "hybrid",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "variants": [
+        "affordable"
+      ]
+    },
+    {
+      "id": "INC_01",
+      "name": "Meals & Infant Formula",
+      "category": "ALL_INCLUSIVE",
+      "detection_method": "semantic",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "description": "Mention of provided daily meals, snacks, or formula."
+    },
+    {
+      "id": "INC_02",
+      "name": "Live Video Streaming",
+      "category": "ALL_INCLUSIVE",
+      "detection_method": "semantic",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "description": "Class streaming access (SproutAbout / Montessori Compass)."
+    },
+    {
+      "id": "INC_03",
+      "name": "Real-Time App Tracking",
+      "category": "ALL_INCLUSIVE",
+      "detection_method": "semantic",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "description": "Mobile app updates for daily activities & communication."
+    },
+    {
+      "id": "INC_04",
+      "name": "Extended Operating Hours",
+      "category": "ALL_INCLUSIVE",
+      "detection_method": "semantic",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "description": "Mention of flexible early/late schedule options."
+    },
+    {
+      "id": "INC_05",
+      "name": "Age Continuity (6wks to School Age)",
+      "category": "ALL_INCLUSIVE",
+      "detection_method": "semantic",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "description": "Continuous care from infants to elementary age."
+    },
+    {
+      "id": "INC_06",
+      "name": "On-Site Extracurricular Enrichments",
+      "category": "ALL_INCLUSIVE",
+      "detection_method": "semantic",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "description": "On-site enrichment programs (music, soccer, STEAM)."
+    },
+    {
+      "id": "INC_07",
+      "name": "Elementary Bus Transportation",
+      "category": "ALL_INCLUSIVE",
+      "detection_method": "semantic",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "description": "Dedicated bus/van transport to local elementary schools."
+    },
+    {
+      "id": "THM_01",
+      "name": "Programs Section Reference",
+      "category": "THEMES",
+      "detection_method": "hybrid",
+      "priority": "Medium",
+      "weight": 1.5,
+      "must_have": false,
+      "description": "Inter-linking / routing callout (e.g. Explore our Programs section)."
+    },
+    {
+      "id": "THM_02",
+      "name": "Kindergarten Transition",
+      "category": "THEMES",
+      "detection_method": "semantic",
+      "priority": "Medium",
+      "weight": 1.5,
+      "must_have": false,
+      "description": "School readiness & smooth transition to kindergarten."
+    },
+    {
+      "id": "THM_03",
+      "name": "Ages Served General Indication",
+      "category": "THEMES",
+      "detection_method": "hybrid",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "description": "Explicit age range callout (e.g., 6 weeks to 12 years)."
+    },
+    {
+      "id": "THM_04",
+      "name": "School Culture & Family Experience",
+      "category": "THEMES",
+      "detection_method": "semantic",
+      "priority": "Medium",
+      "weight": 1.5,
+      "must_have": false,
+      "description": "Warm, welcoming drop-off/pick-up environment copy."
+    },
+    {
+      "id": "THM_05",
+      "name": "Teacher Qualifications Brief",
+      "category": "THEMES",
+      "detection_method": "semantic",
+      "priority": "Medium",
+      "weight": 1.5,
+      "must_have": false,
+      "description": "Qualification signal without full resume (e.g. certified educators)."
+    },
+    {
+      "id": "THM_06",
+      "name": "Tour Invitation Close",
+      "category": "THEMES",
+      "detection_method": "hybrid",
+      "priority": "Medium",
+      "weight": 1.5,
+      "must_have": false,
+      "description": "Clear CTA to visit or schedule a tour."
+    },
+    {
+      "id": "THM_07",
+      "name": "School Philosophy / Approach",
+      "category": "THEMES",
+      "detection_method": "semantic",
+      "priority": "High",
+      "weight": 3.0,
+      "must_have": false,
+      "description": "Educational method (e.g., Reggio Emilia inspired, Montessori)."
+    },
+    {
+      "id": "THM_08",
+      "name": "Developmental Benefit Language",
+      "category": "THEMES",
+      "detection_method": "semantic",
+      "priority": "Medium",
+      "weight": 1.5,
+      "must_have": false,
+      "description": "Social-emotional, physical, or cognitive development language."
+    },
+    {
+      "id": "STR_01",
+      "name": "Word Count Optimization",
+      "category": "STRUCTURE",
+      "detection_method": "deterministic",
+      "priority": "Medium",
+      "weight": 1.5,
+      "must_have": false,
+      "description": "Welcome section word count is within optimal concise range (~180 to 300 words)."
+    },
+    {
+      "id": "STR_02",
+      "name": "Leads with Local Information",
+      "category": "STRUCTURE",
+      "detection_method": "hybrid",
+      "priority": "High",
+      "weight": 4.0,
+      "must_have": true,
+      "description": "Critical SEO Rule: Opening 2 sentences MUST contain campus-specific local signals (city, street, landmark)."
+    }
+  ],
+  "meta": {
+    "weight_rule": "D1 (decided 2026-10-05): must_have=true forces weight 4.0 regardless of priority; otherwise priority weights High=3.0, Medium=1.5, Low=1.0",
+    "parameter_count": 56,
+    "variants_note": "All KW/SKW variants matched with word-boundary phrase patterns (S2); enriched 2026-10-05"
+  }
+}

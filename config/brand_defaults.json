@@ -1,0 +1,25 @@
+{
+  "_note": "Brand keys are the EXACT strings stored in RIO_Location_Export.xlsx 'brand' column (verified 2026-10-05). 'display_name' is how the brand appears on its own website. 'aliases' hold only verified naming variants for GEO_01 matching; extend during golden calibration (S9), never by guesswork. Tech detection terms deliberately omit the ® symbol — live pages write 'SproutAbout' without it (verified on school 7440).",
+  "brands": {
+    "La Petite Academy": { "display_name": "La Petite Academy", "domain": "lapetite.com", "app": "SproutAbout", "aliases": ["La Petite"] },
+    "Childtime": { "display_name": "Childtime", "domain": "childtime.com", "app": "SproutAbout", "aliases": [] },
+    "Tutor Time": { "display_name": "Tutor Time", "domain": "tutortime.com", "app": "SproutAbout", "aliases": [] },
+    "The Childrens Courtyard": { "display_name": "The Children's Courtyard", "domain": "childrenscourtyard.com", "app": "SproutAbout", "aliases": ["The Children's Courtyard", "Children's Courtyard"] },
+    "Everbrook Academy": { "display_name": "Everbrook Academy", "domain": "everbrookacademy.com", "app": "SproutAbout", "aliases": [] },
+    "Montessori Unlimited": { "display_name": "Montessori Unlimited", "domain": "montessori.com", "app": "Montessori Compass", "aliases": [] },
+    "ATGW": { "display_name": "Gilden Woods", "domain": "gildenwoods.com", "app": "SproutAbout", "aliases": ["Gilden Woods"] },
+    "Pathways Learning Academy": { "display_name": "Pathways Learning Academy", "domain": "pathwayslearningacademy.com", "app": "SproutAbout", "aliases": [] },
+    "U Gro": { "display_name": "U-GRO Learning Centres", "domain": "u-gro.com", "app": "SproutAbout", "aliases": ["U-GRO", "U-Gro"] },
+    "Creative Kids": { "display_name": "Creative Kids Learning Center", "domain": "creativekidslearningcenter.com", "app": "SproutAbout", "aliases": ["Creative Kids Learning Center"] },
+    "Young School": { "display_name": "Young School", "domain": "youngschool.com", "app": "SproutAbout", "aliases": [] }
+  },
+  "tech_detection_terms": {
+    "SproutAbout": ["sproutabout"],
+    "Montessori Compass": ["montessori compass"]
+  },
+  "default_concurrency": 5,
+  "per_domain_max_concurrent": 1,
+  "per_domain_min_delay_seconds": 1.0,
+  "request_timeout_seconds": 45,
+  "max_retries": 3
+}
