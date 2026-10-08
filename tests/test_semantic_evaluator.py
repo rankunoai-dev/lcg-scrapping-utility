@@ -142,6 +142,9 @@ class TestKeywordUpgrade:
         assert det["KW_01"]["welcome_status"] == "PARTIAL"  # never PRESENT
         assert det["KW_01"]["page_status"] == "PARTIAL"
         assert any("SEMANTIC_PARAPHRASE_UPGRADE" in f for f in det["KW_01"]["flags"])
+        # regression (live catch, school 4848): a welcome-side upgrade must
+        # also back the derived page verdict with evidence (validator V6)
+        assert det["KW_01"]["page_evidence"] == "infant care program"
 
     def test_deterministic_present_never_touched(self):
         out = full_output()

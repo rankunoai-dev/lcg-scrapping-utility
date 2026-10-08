@@ -20,6 +20,10 @@ school_id,locality,rio_city,state,source_run_date,note
 60,Hauppauge,Hauppauge,NY,20260921,city-fallback — no verified sub-city locality; GEO_04 = N/A
 63,Albany,Albany,NY,20260921,city-fallback — no verified sub-city locality; GEO_04 = N/A
 66,Orchard Park,Orchard Park,NY,20260921,city-fallback — no verified sub-city locality; GEO_04 = N/A
+68,Rye Brook,Rye Brook,NY,20260921,city-fallback — no verified sub-city locality; GEO_04 = N/A
+69,Mohegan Lake,Mohegan Lake,NY,20260921,city-fallback — no verified sub-city locality; GEO_04 = N/A
+70,Latham,Latham,NY,20260921,city-fallback — no verified sub-city locality; GEO_04 = N/A
+71,Schenectady,Schenectady,NY,20260921,city-fallback — no verified sub-city locality; GEO_04 = N/A
 101,Villa Park,Villa Park,IL,20260919,city-fallback — no verified sub-city locality; GEO_04 = N/A
 104,Glen Ellyn,Glen Ellyn,IL,20260919,city-fallback — no verified sub-city locality; GEO_04 = N/A
 106,Washington,Washington,IL,20260921,city-fallback — no verified sub-city locality; GEO_04 = N/A
@@ -94,6 +98,9 @@ school_id,locality,rio_city,state,source_run_date,note
 677,Howell,Howell,MI,20260921,city-fallback — no verified sub-city locality; GEO_04 = N/A
 678,New Hudson,New Hudson,MI,20260921,city-fallback — no verified sub-city locality; GEO_04 = N/A
 679,Troy,Troy,MI,20260921,city-fallback — no verified sub-city locality; GEO_04 = N/A
+680,Midland,Midland,MI,20260921,city-fallback — no verified sub-city locality; GEO_04 = N/A
+682,DeWitt,DeWitt,MI,20260921,city-fallback — no verified sub-city locality; GEO_04 = N/A
+683,Grand Ledge,Grand Ledge,MI,20260921,city-fallback — no verified sub-city locality; GEO_04 = N/A
 802,Gaithersburg,Gaithersburg,MD,20260921,city-fallback — no verified sub-city locality; GEO_04 = N/A
 809,Bethesda,Bethesda,MD,20260921,city-fallback — no verified sub-city locality; GEO_04 = N/A
 810,Hanover,Hanover,MD,20260921,city-fallback — no verified sub-city locality; GEO_04 = N/A

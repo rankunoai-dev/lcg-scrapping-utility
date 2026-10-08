@@ -385,7 +385,7 @@ Confidence = mean of evidence-verified semantic confidences (diagnostic only)
 | Fetch (Playwright, shared browser, concurrency 5, per-domain throttle) | 1,113 pages | ~45–75 min incl. retries |
 | Extraction + deterministic | 1,113 | < 2 min (CPU) |
 | Semantic LLM (1 call/school, ~4–6k in / ~1.5–2k out tokens, rubric prompt-cached) | 1,113 calls | ~30–45 min at concurrency 5 |
-| LLM cost @ default `claude-opus-5-5` ($4/M in, $20/M out) | ~6M in / ~2M out | **~$60–70 per full run** (≈ half that via the Batch API if latency doesn't matter; `claude-sonnet-5-5` ≈ $30–35; Haiku-class ≈ $12–18; 10-school calibration: pennies). Model set via `LCG_LLM_MODEL` |
+| LLM cost — **measured** on the live 10-school calibration (2026-10-05, `anthropic/claude-haiku-4.5` via OpenRouter: ~4.2k in / ~2.1k out tokens per school) | ~$0.014 / school | **≈ $16–18 full network** at Haiku 4.5; Sonnet 5.5 ≈ $32–38; Opus 5.5 ≈ $65–75; OpenRouter `:batch` variants cheaper still. Model via `LCG_LLM_MODEL`. Credit guardrails: school cap (bypass with `--all-schools`), per-run `--max-cost` cap, persistent spend ledger |
 | Report generation | 62,328-row matrix | ~1–2 min |
 
 Re-runs after rubric changes cost **$0 in scraping** (HTML cached) and only the LLM delta.

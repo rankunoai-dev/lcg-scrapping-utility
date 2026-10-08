@@ -242,4 +242,9 @@ class SemanticEvaluator:
                         f"SEMANTIC_PARAPHRASE_UPGRADE_{scope_name.upper()}")
             det["page_status"] = combine_page_status(det["welcome_status"],
                                                      det["rest_status"])
+            # page scope includes welcome: a welcome-side upgrade must back
+            # the page verdict too (validator rule V6)
+            if det["page_status"] in ("PRESENT", "PARTIAL") and \
+                    not det.get("page_evidence"):
+                det["page_evidence"] = det.get("welcome_evidence")
         return results, meta

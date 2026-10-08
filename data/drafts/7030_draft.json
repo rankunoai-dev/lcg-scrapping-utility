@@ -1,0 +1,41 @@
+{
+ "school_id": "7030",
+ "school_name": "La Petite Academy of Blue Springs",
+ "url": "https://www.lapetite.com/your-local-school/blue-springs-mo-7030/",
+ "status": "CLEAN",
+ "template_used": "Sample 2",
+ "draft_copy": "Thank you for visiting our La Petite Academy daycare and preschool in Blue Springs, MO! Our school is located at 2010 NW State Route 7, between [CLIENT INPUT NEEDED: Landmark 1] and [CLIENT INPUT NEEDED: Landmark 2], a convenient setting for families in the Blue Springs community. Our academy - including care for Infants, Preschool programs and more - is nationally accredited by the National Early Childhood Program Accreditation.\n\nFamilies looking for trusted child care and early education in Blue Springs, MO can find a warm, welcoming environment for their child's early learning journey. Children explore learning centers, participate in small- and large-group activities, and spend time outdoors, which gives them room to explore, build confidence, and feel comfortable from their first day.\n\nLed by Amber Medlin, Director, our team is committed to building strong relationships with children and families. Amber says, \"I have worked for La Petite Academy for seven years and have been a director on the KS side for three.\" Many educators have been part of our school community for [CLIENT INPUT NEEDED: years of staff tenure], helping children build trusted relationships with familiar teachers.\n\nServing families in Blue Springs, MO for [CLIENT INPUT NEEDED: years serving the community], La Petite Academy provides childcare focused on supporting children's social, emotional, and academic development. We're committed to keeping you connected throughout the day. Get access to live streaming video of your child's classroom, plus other real-time updates, with our exclusive mobile app for families, SproutAbout. Our approach helps children build the confidence and skills needed for a successful transition to kindergarten. Explore our Programs section to learn more about La Petite Academy of Blue Springs, MO.\n\nWe are here for you so please call us or stop by to schedule a tour of our La Petite Academy in Blue Springs, MO, today!",
+ "client_inputs_needed": [
+  "[CLIENT INPUT NEEDED: Landmark 1]",
+  "[CLIENT INPUT NEEDED: Landmark 2]",
+  "[CLIENT INPUT NEEDED: years of staff tenure]",
+  "[CLIENT INPUT NEEDED: years serving the community]"
+ ],
+ "preserved_sentences": [
+  "Thank you for visiting our La Petite Academy daycare and preschool in Blue Springs, MO!",
+  "Our academy - including care for Infants, Preschool programs and more - is nationally accredited by the National Early Childhood Program Accreditation.",
+  "Get access to live streaming video of your child's classroom, plus other real-time updates, with our exclusive mobile app for families, SproutAbout.",
+  "We are here for you so please call us or stop by to schedule a tour of our La Petite Academy in Blue Springs, MO, today!"
+ ],
+ "gap_notes": [
+  "GEO_05: street address 2010 NW State Route 7 added in the second sentence.",
+  "GEO_06/GEO_07: landmarks not in fact sheet, so placeholders were inserted.",
+  "LEAD_01: Director Amber Medlin named from the fact sheet.",
+  "LEAD_02: the director's quote about seven years with La Petite Academy and three as a director was included verbatim; no additional years were claimed.",
+  "LEAD_03: years serving the community not provided, so a placeholder was used.",
+  "QUAL_02/QUAL_03: no certifications or awards in the fact sheet; the existing accreditation was preserved and no awards were invented.",
+  "QUAL_04: staff tenure not provided, so a placeholder was used.",
+  "FAC_01: facility highlight taken from the fact sheet (learning centers, small- and large-group activities, outdoor time).",
+  "SAFE_01: SproutAbout and the staying-connected line were used.",
+  "KW_03/KW_04/SKW_02: exact phrases child care, childcare and early education added.",
+  "SKW_04/THM_02: kindergarten transition covered with the template's generic wording.",
+  "SKW_05: 'learning centers' mentioned in the facility highlight.",
+  "THM_01: Programs section referenced.",
+  "THM_03/INC_05: Infants and Preschool programs retained from preserved text; no full age range invented.",
+  "Not covered, no facts supplied: KW_05, SKW_03, SKW_06 through SKW_10, SKW_12 through SKW_17, INC_01, INC_04, INC_06, INC_07, THM_04, THM_05, THM_07, THM_08. Omitted to avoid inventing facts and to stay within length."
+ ],
+ "guard_flags": [],
+ "word_count": 304,
+ "writer_model": "anthropic/claude-sonnet-5.5",
+ "writer_version": "1.0.0"
+}

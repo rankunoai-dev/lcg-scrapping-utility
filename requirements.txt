@@ -6,6 +6,8 @@ requests>=2.31.0
 pydantic>=2.5.0
 python-dotenv>=1.0.0
 lxml>=5.1.0
+openai>=1.50.0          # OpenRouter access (OpenAI-compatible endpoint)
+anthropic>=0.40.0       # direct Anthropic API path (sk-ant- keys)
 
 # dev / test
 pytest>=8.0.0

@@ -34,8 +34,15 @@ _CTRL_RX = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]")
 EXPECTED_SHEETS = [
     "00_Run_Summary", "01_School_Scorecard", "02_Parameter_Presence_Matrix",
     "03_Parameter_Summary", "04_Remediation_Queue", "05_Evaluation_Evidence",
-    "06_Location_Review",
+    "06_Location_Review", "07_Welcome_Presence_Pivot", "08_Page_Excl_Welcome_Pivot",
+    "09_Welcome_Present_Absent",
 ]
+PIVOT_SHEETS = ["07_Welcome_Presence_Pivot", "08_Page_Excl_Welcome_Pivot"]
+
+# NEARBY "localities" that are generic English words colliding with fixed
+# instruction vocabulary — never a meaningful prescription target.
+_GENERIC_NEARBY_NAMES = {"street", "park", "center", "centre", "north", "south",
+                         "east", "west", "city", "spring", "lakes"}
 
 
 def load_locality_artifacts(data_dir: str | Path = "data"):
@@ -99,9 +106,19 @@ class OutputValidator:
                     continue
                 sid = str(r[idx["School ID"]])
                 pid = str(r[idx["Parameter ID"]])
-                text = " ".join(str(r[idx[c]] or "") for c in
-                                ("Action", "Action Detail", "Provenance") if c in idx)
-                text_key = norm_key(text)
+                # V3/V4 police PRESCRIPTIONS — the instruction a copywriter
+                # acts on. Two segments are exempt because they legitimately
+                # contain locality words without prescribing them:
+                #   * quoted page text after "Page evidence:" ("Old Farm Rd",
+                #     "in Humble, TX" — the school's own copy)
+                #   * the Provenance column (source citations such as
+                #     "Verified Locality Register 'Wylie' (LOCATED_IN...)" or
+                #     "RIO Address 1 '8101 Miamisburg Centerville Rd'")
+                detail = str(r[idx["Action Detail"]] or "") if "Action Detail" in idx else ""
+                detail = detail.split("Page evidence:", 1)[0]
+                action = str(r[idx["Action"]] or "") if "Action" in idx else ""
+                instruction = action + " " + detail
+                text_key = norm_key(instruction)
 
                 reg = self.register.get(sid)
                 if reg:
@@ -113,17 +130,38 @@ class OutputValidator:
                             f"for school {sid} ({pid})")
 
                 for name in self.nearby.get(sid, []):
-                    if name and phrase_pattern(name).search(text):
+                    # loc-intel NEARBY data contains generic-word place names
+                    # ("Street") that collide with instruction vocabulary
+                    # ("Street Address") — skip those, they cannot be a
+                    # meaningful locality prescription anyway.
+                    if not name or norm_key(name) in _GENERIC_NEARBY_NAMES:
+                        continue
+                    if phrase_pattern(name).search(instruction):
                         violations.append(
                             f"V4: NEARBY locality {name!r} named in 04 for school "
                             f"{sid} ({pid})")
 
                 if pid in ("GEO_06", "GEO_07"):
-                    action = str(r[idx["Action"]] or "")
-                    if action != "FIELD TASK":
+                    # Landmarks may be MOVED (the school's own page already
+                    # states them) but never CREATED from thin air.
+                    if action not in ("FIELD TASK", "MOVE / SURFACE"):
                         violations.append(
                             f"V5: landmark row for school {sid} ({pid}) is "
-                            f"{action!r}, must be FIELD TASK")
+                            f"{action!r}, must be FIELD TASK or MOVE / SURFACE")
+
+        # V8 pivot cells: a PRESENT/PARTIAL verdict must embed its page quote
+        for name in PIVOT_SHEETS:
+            if name not in wb.sheetnames:
+                continue
+            ws = wb[name]
+            for row in ws.iter_rows(min_row=2):
+                for cell in row[3:]:  # after School ID / Name / URL
+                    v = cell.value
+                    if isinstance(v, str) and v.startswith(("PRESENT", "PARTIAL")) \
+                            and ' — "' not in v:
+                        violations.append(
+                            f"V8: pivot verdict without embedded quote "
+                            f"{name}!{cell.coordinate}: {v[:40]!r}")
 
         # V6 evidence on PRESENT/PARTIAL matrix rows
         if "02_Parameter_Presence_Matrix" in wb.sheetnames:
@@ -172,7 +210,7 @@ def main():
         for v in violations[:50]:
             print("  ", v)
         sys.exit(1)
-    print(f"PASS — {path} satisfies all output invariants (V1–V7)")
+    print(f"PASS — {path} satisfies all output invariants (V1–V8)")
 
 
 if __name__ == "__main__":

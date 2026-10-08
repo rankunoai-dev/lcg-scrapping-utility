@@ -1,0 +1,48 @@
+{
+ "school_id": "7440",
+ "school_name": "La Petite Academy on Beach Blvd.",
+ "url": "https://www.lapetite.com/your-local-school/jacksonville-fl-7440/",
+ "status": "CLEAN",
+ "template_used": "Sample 2",
+ "draft_copy": "Welcome to La Petite Academy on Beach Boulevard in Jacksonville, Florida! Since 1991, we have provided quality daycare and early education in a safe, supportive environment. Our school is accredited by the National Early Childhood Program Accreditation (NECPA) and holds Gold Seal Quality Care status with the State of Florida. We are conveniently located on Beach Boulevard between Hodges Boulevard and San Pablo Road, across from Denny's. Our programs include Infants, Toddlers, Twos, Preschool, Pre-K, and Summer Camp. Led by Dee Pryor, Director, our team supports families in the [CLIENT INPUT NEEDED: neighborhood or locality name] area of Jacksonville with child care and preschool built around early childhood development.\n\nChildren explore learning centers, participate in small- and large-group activities, and spend time outdoors. This approach supports age-appropriate learning, developmental milestones, and foundational skills that prepare children for a successful transition to kindergarten. Our teachers are enthusiastic early childhood education professionals who stay current with monthly training sessions and ongoing training offered by the state. Additionally, all teachers and management staff are certified in CPR and First Aid. We are proud to boast that we have a combined 100 years of early childhood education experience! Families can learn more about our hours, meals, tuition assistance, and [CLIENT INPUT NEEDED: drop-in or flexible care availability] by contacting the school.\n\nGet access to live streaming video of your child's classroom, plus other real-time updates, with our exclusive mobile app for families, SproutAbout. Explore our Programs section to learn more about each age group, and schedule a tour today, we can't wait to meet your family!",
+ "client_inputs_needed": [
+  "[CLIENT INPUT NEEDED: neighborhood or locality name]",
+  "[CLIENT INPUT NEEDED: drop-in or flexible care availability]"
+ ],
+ "preserved_sentences": [
+  "Welcome to La Petite Academy on Beach Boulevard in Jacksonville, Florida!",
+  "Since 1991, we have provided quality daycare and early education in a safe, supportive environment.",
+  "Our school is accredited by the National Early Childhood Program Accreditation (NECPA) and holds Gold Seal Quality Care status with the State of Florida.",
+  "We are conveniently located on Beach Boulevard between Hodges Boulevard and San Pablo Road, across from Denny's.",
+  "Our programs include Infants, Toddlers, Twos, Preschool, Pre-K, and Summer Camp.",
+  "Our teachers are enthusiastic early childhood education professionals who stay current with monthly training sessions and ongoing training offered by the state.",
+  "Additionally, all teachers and management staff are certified in CPR and First Aid.",
+  "We are proud to boast that we have a combined 100 years of early childhood education experience!",
+  "Get access to live streaming video of your child's classroom, plus other real-time updates, with our exclusive mobile app for families, SproutAbout.",
+  "Schedule a tour today, we can't wait to meet your family!"
+ ],
+ "gap_notes": [
+  "GEO_04: locality name not in fact sheet; placeholder added.",
+  "GEO_07: Landmark 2 not provided separately; existing Hodges Boulevard/San Pablo Road wording preserved.",
+  "LEAD_01: Dee Pryor named as Director from fact sheet.",
+  "LEAD_02: director experience years not provided; not invented.",
+  "QUAL_03: no awards in fact sheet; existing NECPA and Gold Seal accreditation preserved.",
+  "FAC_01: facility highlight covered with learning centers and outdoor time from fact sheet.",
+  "SAFE_01: covered by safe, supportive environment, CPR/First Aid certification, and SproutAbout.",
+  "KW_05/SKW_03: flexible/drop-in care requires facts; placeholder added.",
+  "SKW_04/THM_02: kindergarten readiness and transition covered with template thematic wording.",
+  "SKW_05: learning centers mentioned.",
+  "SKW_08/SKW_12/SKW_15/SKW_14/THM_08: thematic wording on milestones, age-appropriate learning, foundational skills, and early childhood development.",
+  "SKW_10: tuition assistance mentioned generically as a topic to ask about; no specifics invented.",
+  "SKW_07/SKW_09/SKW_11/SKW_13/SKW_16/SKW_17: no verified facts; licensed status, individualized learning, affordability and similar claims not asserted to avoid invention.",
+  "INC_01/INC_04: meals and hours mentioned only as topics to contact the school about; no details invented.",
+  "INC_05/THM_03: age range covered by preserved programs list.",
+  "INC_06/INC_07: enrichments and bus transportation lack facts; before/after-school sentence omitted for length, no new claims.",
+  "THM_01: Programs section referenced.",
+  "THM_04/THM_07: covered by small- and large-group activities and outdoor time plus family app."
+ ],
+ "guard_flags": [],
+ "word_count": 262,
+ "writer_model": "anthropic/claude-sonnet-5.5",
+ "writer_version": "1.0.0"
+}

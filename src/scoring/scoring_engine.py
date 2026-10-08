@@ -25,7 +25,7 @@ ENGINE_VERSION = "2.0.0"
 # Bump whenever evaluator/extractor BEHAVIOR changes, so cached observations
 # invalidate exactly like a config edit would (observations capture code
 # output, not just config input).
-PIPELINE_VERSION = "2.0.1"
+PIPELINE_VERSION = "2.1.0"  # welcome scope sourced from client CMS file
 
 STATUS_VALUE = {"PRESENT": 1.0, "PARTIAL": 0.5, "ABSENT": 0.0}
 
@@ -184,6 +184,7 @@ class ScoringEngine:
             "school_id": str(school_id),
             "school_name": school_meta.get("school_name",
                                            extracted.get("school_name", f"School_{school_id}")),
+            "url": school_meta.get("url", ""),
             "brand": school_meta.get("brand", extracted.get("brand", "")),
             "city": school_meta.get("city", ""),
             "state": school_meta.get("state", ""),
@@ -199,7 +200,9 @@ class ScoringEngine:
             "welcome_word_count": extracted.get("welcome_word_count", 0),
             "extraction_method": extracted.get("extraction_method", ""),
             "welcome_dom_path": extracted.get("welcome_dom_path", ""),
-            "flags": sorted(flags_rollup),
+            "welcome_source": extracted.get("welcome_source", "SCRAPED_FALLBACK"),
+            "flags": sorted(flags_rollup
+                            + [f"WELCOME:{f}" for f in extracted.get("welcome_source_flags", [])]),
             "parameters": parameter_rows,
             "envelope": {
                 "config_hash": self.config_hash,

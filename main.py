@@ -21,6 +21,8 @@ import asyncio
 import csv
 import json
 import logging
+import os
+from datetime import datetime, timezone
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -29,6 +31,7 @@ load_dotenv()
 from src.evaluator.deterministic_checker import DeterministicChecker
 from src.evaluator.llm_client import LLMClient
 from src.evaluator.semantic_evaluator import SEMANTIC_PARAM_IDS, SemanticEvaluator
+from src.ingest.welcome_source import ClientWelcomeSource, apply_client_welcome
 from src.matching.geo_matcher import LocalityResolver
 from src.qa.output_validator import OutputValidator, load_locality_artifacts
 from src.reporter.report_generator import ReportGenerator
@@ -69,12 +72,22 @@ def skipped_semantic_results(reason: str) -> dict:
     }
 
 
+def _cached_needs_semantic_rerun(obs: dict) -> bool:
+    """A budget-starved/failed semantic pass must not freeze into the cache."""
+    return any("SEMANTIC_FAILED" in f or "SEMANTIC_SKIPPED" in f
+               for f in obs.get("flags", []))
+
+
 async def process_school(school, fetcher, extractor, checker, sem_eval,
-                         engine, args, llm_rollup) -> dict | None:
+                         engine, args, llm_rollup, client_welcome=None) -> dict | None:
     sid = str(school["school_id"])
     if not args.force and engine.is_observed(sid):
-        logger.info("[%s] observation cached (config hash match)", sid)
-        return engine.load_observation(sid)
+        obs = engine.load_observation(sid)
+        if args.skip_semantic or not _cached_needs_semantic_rerun(obs):
+            logger.info("[%s] observation cached (config hash match)", sid)
+            return obs
+        logger.info("[%s] cached observation lacks semantic results — re-evaluating "
+                    "from cached HTML", sid)
 
     fetch = await fetcher.fetch(school, force=args.force)
     if not fetch["ok"]:
@@ -88,6 +101,12 @@ async def process_school(school, fetcher, extractor, checker, sem_eval,
     extracted = extractor.extract(sid, fetch["html"], brand=school.get("brand", ""),
                                   school_name=school.get("school_name", ""),
                                   fetch_meta=fetch_meta)
+    # Welcome scope source of truth: the client CMS export (Tier 0);
+    # scraped welcome remains the fallback and the cross-check.
+    if client_welcome is not None:
+        extracted = apply_client_welcome(extracted, client_welcome.get(sid))
+        Path(f"data/extracted_sections/{sid}.json").write_text(
+            json.dumps(extracted, indent=1, ensure_ascii=False), encoding="utf-8")
 
     det = checker.evaluate(extracted, school)
 
@@ -137,13 +156,36 @@ async def main_async(args):
     schools = load_schools(args.csv, only)
     logger.info("Schools in scope: %d | config hash: %s", len(schools), config_hash)
 
+    # ---- credit guardrail 1: pre-spend school cap -----------------------
+    # An LLM-evaluating run larger than DEFAULT_MAX_SCHOOLS refuses to start
+    # unless --all-schools is explicit. Test runs stay small by default.
+    llm_active = not (args.skip_semantic or args.fetch_only or args.report_only)
+    school_cap = int(os.environ.get("DEFAULT_MAX_SCHOOLS", "10"))
+    if llm_active and len(schools) > school_cap and not args.all_schools:
+        logger.error(
+            "GUARDRAIL: %d schools requested with LLM evaluation active, but the "
+            "safety cap is %d (env DEFAULT_MAX_SCHOOLS). Pass --all-schools to "
+            "run the full batch deliberately, or --skip-semantic for a free "
+            "deterministic-only run.", len(schools), school_cap)
+        raise SystemExit(2)
+
+    llm_client = LLMClient(max_cost_usd=args.max_cost)
+    if llm_active:
+        logger.info("Credit guardrails: model=%s | session cost cap=$%.2f | "
+                    "school cap=%s", llm_client.model, llm_client.max_cost_usd,
+                    "OFF (--all-schools)" if args.all_schools else school_cap)
+
     resolver = LocalityResolver("data")
     checker = DeterministicChecker(params, brand_cfg, resolver)
-    sem_eval = SemanticEvaluator(params, brand_cfg, llm_client=LLMClient())
+    sem_eval = SemanticEvaluator(params, brand_cfg, llm_client=llm_client)
     engine = ScoringEngine(params, config_hash=config_hash)
     extractor = SectionExtractor()
     manifest = RunManifest()
     llm_rollup: dict = {}
+    client_welcome = ClientWelcomeSource()
+    if client_welcome.data:
+        logger.info("Client CMS welcome text loaded for %d schools "
+                    "(authoritative welcome scope)", len(client_welcome.data))
 
     scorecards: list[dict] = []
     if not args.report_only:
@@ -153,7 +195,8 @@ async def main_async(args):
                 async with sem:
                     try:
                         return await process_school(s, fetcher, extractor, checker,
-                                                    sem_eval, engine, args, llm_rollup)
+                                                    sem_eval, engine, args, llm_rollup,
+                                                    client_welcome=client_welcome)
                     except Exception:
                         logger.exception("[%s] pipeline error", s.get("school_id"))
                         await manifest.update(str(s.get("school_id")), "FAILED",
@@ -166,9 +209,30 @@ async def main_async(args):
             logger.info("Fetch-only run complete. Manifest: %s", manifest.summary())
             return
 
-    if not scorecards:
-        scorecards = collect_observations(engine, [s["school_id"] for s in schools]
-                                          if only else None)
+        # ---- credit guardrail 2: spend ledger + session summary ---------
+        if llm_active:
+            spent = round(llm_client.total_cost_usd, 4)
+            llm_rollup["cost_usd"] = spent
+            ledger_path = Path("data/llm_spend_ledger.json")
+            ledger = json.loads(ledger_path.read_text(encoding="utf-8")) \
+                if ledger_path.exists() else []
+            ledger.append({
+                "ts": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                "model": llm_client.model,
+                "schools_in_scope": len(schools),
+                "input_tokens": llm_rollup.get("input_tokens", 0),
+                "output_tokens": llm_rollup.get("output_tokens", 0),
+                "session_cost_usd": spent,
+                "session_cap_usd": llm_client.max_cost_usd,
+            })
+            ledger_path.write_text(json.dumps(ledger, indent=1), encoding="utf-8")
+            lifetime = round(sum(e.get("session_cost_usd", 0) for e in ledger), 4)
+            logger.info("LLM spend this run: $%.4f (cap $%.2f) | lifetime ledger "
+                        "total: $%.4f", spent, llm_client.max_cost_usd, lifetime)
+
+    # The workbook always reflects the WHOLE network state on disk, not just
+    # this run's slice — chunked runs accumulate into one deliverable.
+    scorecards = collect_observations(engine, None)
     if not scorecards:
         logger.error("No observations available to report on.")
         return
@@ -185,7 +249,26 @@ async def main_async(args):
             if fr.get("flags") not in ("", "URL_PATTERN_OTHER")
         ]
 
+    all_schools_map = {r["school_id"]: r["url"] for r in load_schools(args.csv, None)}
+
+    # Client sequencing: rows follow the dropped-pages batch order when the
+    # plan exists (Batch 1 -> 47, then the rest of the network).
+    school_order, batch_map = [], {}
+    plan_path = Path("data/batch_plan.json")
+    if plan_path.exists():
+        plan = json.loads(plan_path.read_text(encoding="utf-8"))
+        for bname, ids in plan.get("batches", {}).items():
+            for sid in ids:
+                if sid in batch_map:
+                    continue  # reference lists some schools twice; FIRST position wins
+                school_order.append(sid)
+                batch_map[sid] = bname
+        school_order += [sid for sid in plan.get("rest_of_network", [])
+                         if sid not in batch_map]
+
     reporter = ReportGenerator(output_path=args.output,
+                               school_urls=all_schools_map,
+                               school_order=school_order, batch_map=batch_map,
                                locality_register=register, nearby_names={
                                    sid: [x["name"] for x in rows]
                                    for sid, rows in json.loads(
@@ -206,7 +289,7 @@ async def main_async(args):
         for v in violations[:30]:
             logger.error("  %s", v)
         raise SystemExit(1)
-    logger.info("Output validator: PASS (V1–V7)")
+    logger.info("Output validator: PASS (V1–V8)")
 
 
 def main():
@@ -220,6 +303,13 @@ def main():
     ap.add_argument("--report-only", action="store_true")
     ap.add_argument("--skip-semantic", action="store_true",
                     help="deterministic engine only; semantic params scored N_A")
+    ap.add_argument("--max-cost", type=float,
+                    default=float(os.environ.get("DEFAULT_MAX_COST_USD", "1.0")),
+                    help="hard USD cap on this run's LLM spend (default from "
+                         ".env DEFAULT_MAX_COST_USD, else $1.00)")
+    ap.add_argument("--all-schools", action="store_true",
+                    help="bypass the DEFAULT_MAX_SCHOOLS guardrail for a "
+                         "deliberate full-network LLM run")
     args = ap.parse_args()
     asyncio.run(main_async(args))
 

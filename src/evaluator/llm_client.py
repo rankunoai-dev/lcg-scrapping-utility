@@ -41,9 +41,14 @@ class LLMCallMeta:
 
 class LLMClient:
     def __init__(self, model: str | None = None, schema_retries: int = 2,
-                 max_tokens: int = 8000, max_cost_usd: float | None = None):
+                 max_tokens: int = 8000, max_cost_usd: float | None = None,
+                 reasoning_effort: str | None = None):
         self.schema_retries = schema_retries
         self.max_tokens = max_tokens
+        # OpenRouter reasoning control: thinking tokens bill as OUTPUT, so a
+        # writer-style task should run at "low" effort (cost guard, verified:
+        # an uncapped Sonnet draft burned ~18k thinking tokens = $0.19)
+        self.reasoning_effort = reasoning_effort
         
         # Load API keys & determine provider
         self.openrouter_key = os.environ.get("OPENROUTER_API_KEY", "").strip()
@@ -139,10 +144,14 @@ class LLMClient:
         for attempt in range(1, self.schema_retries + 2):
             meta.attempts = attempt
             try:
+                extra = {"max_completion_tokens": self.max_tokens}
+                if self.reasoning_effort:
+                    extra["extra_body"] = {"reasoning": {"effort": self.reasoning_effort}}
                 response = client.beta.chat.completions.parse(
                     model=self.model,
                     messages=messages,
                     response_format=schema,
+                    **extra,
                 )
                 parsed = response.choices[0].message.parsed
                 if parsed is None:

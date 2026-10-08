@@ -1,0 +1,42 @@
+{
+ "school_id": "7002",
+ "school_name": "La Petite Academy of Crystal Lake",
+ "url": "https://www.lapetite.com/your-local-school/crystal-lake-il-7002/",
+ "status": "CLEAN",
+ "template_used": "Sample 10",
+ "draft_copy": "Welcome to La Petite Academy in Crystal Lake, IL. We have been located here in Crystal Lake since 1999. Families in the Crystal Lake community can give their children a strong start through a caring childcare and preschool environment at 190 N IL Route 31, located between [CLIENT INPUT NEEDED: Landmark 1] and [CLIENT INPUT NEEDED: Landmark 2]. Our [CLIENT INPUT NEEDED: school-specific differentiator] helps create a unique experience that reflects the needs of the children and families we serve.\n\nUnder the leadership of [CLIENT INPUT NEEDED: Director name], our team is committed to a consistent and positive experience for children and families. Our teachers have more than 50 years of combined experience and many of them serve as mentors for other area schools. They stay current on classroom techniques by participating in education training sessions as well as CPR and First Aid training We're committed to keeping you connected throughout the day while your child is in our care. Get access to live streaming video of your child's classroom, plus other real-time updates, with our exclusive mobile app for families, SproutAbout.\n\nLa Petite Academy provides early education and child care designed to support children's overall development, helping them build the confidence and skills needed for kindergarten readiness. Through engaging learning experiences and meaningful relationships, children are encouraged to explore, build confidence, and develop important skills. Explore our Programs section to learn more about our school. Call us for more information about the programs we offer, or to schedule a tour. La Petite Academy is the leading educational daycare in Crystal Lake, IL.",
+ "client_inputs_needed": [
+  "[CLIENT INPUT NEEDED: Landmark 1]",
+  "[CLIENT INPUT NEEDED: Landmark 2]",
+  "[CLIENT INPUT NEEDED: school-specific differentiator]",
+  "[CLIENT INPUT NEEDED: Director name]"
+ ],
+ "preserved_sentences": [
+  "Welcome to La Petite Academy in Crystal Lake, IL.",
+  "We have been located here in Crystal Lake since 1999.",
+  "Our teachers have more than 50 years of combined experience and many of them serve as mentors for other area schools.",
+  "They stay current on classroom techniques by participating in education training sessions as well as CPR and First Aid training We're committed to keeping you connected throughout the day while your child is in our care.",
+  "Get access to live streaming video of your child's classroom, plus other real-time updates, with our exclusive mobile app for families, SproutAbout.",
+  "Call us for more information about the programs we offer.",
+  "La Petite Academy is the leading educational daycare in Crystal Lake, IL."
+ ],
+ "gap_notes": [
+  "GEO_04/SKW_11: Crystal Lake community named in the opening paragraph; the 1999 local roots sentence is preserved.",
+  "GEO_05: street address 190 N IL Route 31 taken from the verified identity.",
+  "GEO_06/GEO_07: landmarks are unavailable, so visible client-input markers were used.",
+  "LEAD_01: director name marker. LEAD_02: no verified director experience, so it is not included.",
+  "KW_02/KW_03/SKW_02: preschool, childcare and child care appear exactly. Daycare and early education appear exactly.",
+  "SAFE_01: SproutAbout live-streaming app is covered in the preserved sentence.",
+  "SKW_04/THM_02: kindergarten readiness is covered with the template's thematic wording.",
+  "THM_01: Programs section reference included.",
+  "THM_04/THM_06: school culture and tour invitation are covered, with the tour invitation added to the preserved call-to-action.",
+  "THM_05: teacher qualifications covered by the preserved 50-years-of-combined-experience and training sentences.",
+  "THM_08: developmental benefit covered by the overall development and skills wording.",
+  "QUAL_01, QUAL_03, FAC_01, KW_05, SKW_03, SKW_07, SKW_10, SKW_17, INC_01, INC_04, INC_05, INC_06, INC_07, THM_03: no verified facts in the fact sheet, so they were not invented or included. Flag to the client.",
+  "Remaining thematic SKW terms (individualized learning, learning center, near you, etc.) were not forced in, to stay within the 300-word limit and avoid unsupported claims."
+ ],
+ "guard_flags": [],
+ "word_count": 263,
+ "writer_model": "anthropic/claude-sonnet-5.5",
+ "writer_version": "1.0.0"
+}

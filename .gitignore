@@ -6,6 +6,7 @@ data/raw_html/
 data/quarantine/
 data/extracted_sections/
 data/observations/
+data/places_cache/
 data/run_manifest.json
 data/llm_spend_ledger.json
 *.xlsx

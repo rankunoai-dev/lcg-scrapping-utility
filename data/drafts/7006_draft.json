@@ -1,0 +1,44 @@
+{
+ "school_id": "7006",
+ "school_name": "La Petite Academy of Kenosha",
+ "url": "https://www.lapetite.com/your-local-school/kenosha-wi-7006/",
+ "status": "CLEAN",
+ "template_used": "Sample 2",
+ "draft_copy": "Welcome to La Petite Academy in Kenosha, WI! Our Infant care and Preschool programs provide the perfect foundation for learning and development. Located at 10320 74th Street, between [CLIENT INPUT NEEDED: Landmark 1] and [CLIENT INPUT NEEDED: Landmark 2], our school serves families in the Kenosha community who want trusted daycare, preschool and child care close to home. We strive to create a warm and welcoming environment and maintain an open-door policy for anyone who would like to talk. We plan a lot of events for everyone to participate in and we work hard to ensure our families develop strong relationships with our staff and each other.\n\nLed by Monika Uchacz, Director, our team provides early education and childcare focused on children's social, emotional, and academic development. We are excited to offer new technology in our School-Age classroom. These enhancements include iPads featuring apps to create art, music and videos, tripods for moviemaking, robots for coding, a new gaming system and more! More than half our teachers have been with our Kenosha school for five years or more and together, they have 130 years of experience combined! All teachers are CPR and First Aid certified.\n\nWe're committed to keeping you connected throughout the day while your child is in our care. Get access to live streaming video of your child's classroom, plus other real-time updates, with our exclusive mobile app for families, SproutAbout. Our approach helps children build the confidence and skills needed for a successful transition to kindergarten. Explore our Programs section to learn more about La Petite Academy of Kenosha, WI. If you are looking for an educational daycare in Kenosha, WI, call La Petite Academy today to schedule a tour! We cannot wait to meet you!",
+ "client_inputs_needed": [
+  "[CLIENT INPUT NEEDED: Landmark 1]",
+  "[CLIENT INPUT NEEDED: Landmark 2]"
+ ],
+ "preserved_sentences": [
+  "Welcome to La Petite Academy in Kenosha, WI!",
+  "Our Infant care and Preschool programs provide the perfect foundation for learning and development.",
+  "We strive to create a warm and welcoming environment and maintain an open-door policy for anyone who would like to talk.",
+  "We plan a lot of events for everyone to participate in and we work hard to ensure our families develop strong relationships with our staff and each other.",
+  "We are excited to offer new technology in our School-Age classroom.",
+  "These enhancements include iPads featuring apps to create art, music and videos, tripods for moviemaking, robots for coding, a new gaming system and more!",
+  "More than half our teachers have been with our Kenosha school for five years or more and together, they have 130 years of experience combined!",
+  "All teachers are CPR and First Aid certified.",
+  "Get access to live streaming video of your child's classroom, plus other real-time updates, with our exclusive mobile app for families, SproutAbout.",
+  "If you are looking for an educational daycare in Kenosha, WI, call La Petite Academy today to schedule a tour!"
+ ],
+ "gap_notes": [
+  "GEO_05: street address 10320 74th Street added in the second sentence.",
+  "GEO_06/GEO_07: landmarks not in fact sheet; left as CLIENT INPUT NEEDED markers.",
+  "LEAD_01: Monika Uchacz named as Director.",
+  "LEAD_02: director experience years not in fact sheet; not stated.",
+  "LEAD_03: years serving community not provided; not stated.",
+  "QUAL_01/QUAL_03: accreditation and awards not in fact sheet; omitted rather than invented.",
+  "SAFE_01: covered by preserved SproutAbout live-streaming sentence and CPR/First Aid certification.",
+  "KW_03/SKW_02: 'child care' and 'childcare' used. KW_04/SKW_01: 'early education' used.",
+  "SKW_04/THM_02: kindergarten transition sentence from template included.",
+  "SKW_16: 'close to home' used generically; exact 'near you' not used.",
+  "THM_01: Programs section reference included.",
+  "THM_03: ages partly indicated by Infant, Preschool and School-Age mentions; no full age range in fact sheet.",
+  "KW_05, SKW_03, SKW_05-15 (other than covered), SKW_17, INC_01, INC_04, INC_06, INC_07, THM_07: no supporting facts in fact sheet, so not added to avoid inventing claims; client input needed.",
+  "Word count exceeds 300 slightly only if counting preserved text; preserved sentences prioritized per rules."
+ ],
+ "guard_flags": [],
+ "word_count": 289,
+ "writer_model": "anthropic/claude-sonnet-5.5",
+ "writer_version": "1.0.0"
+}

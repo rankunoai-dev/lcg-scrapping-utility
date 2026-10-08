@@ -98,8 +98,11 @@ def load_rio_rows(source: Path) -> list[dict]:
             continue
         def cell(name):
             return r[idx[name]] if name in idx else None
+        raw_sid = str(cell("School #")).strip()
         rows.append({
-            "school_id": str(cell("School #")).strip(),
+            # RIO mixes numeric and text-typed School # cells; text ones carry
+            # leading zeros ('0068'). Normalize so every join uses '68'.
+            "school_id": str(int(raw_sid)) if raw_sid.isdigit() else raw_sid,
             "school_name": fold_text(cell("Location Name")),
             "street_address": fold_text(cell("Address 1")),
             "address2": fold_text(cell("Address 2")),

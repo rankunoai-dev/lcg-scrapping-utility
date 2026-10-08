@@ -1,0 +1,42 @@
+{
+ "school_id": "7015",
+ "school_name": "La Petite Academy of Avon",
+ "url": "https://www.lapetite.com/your-local-school/avon-in-7015/",
+ "status": "CLEAN",
+ "template_used": "Sample 2",
+ "draft_copy": "Welcome to La Petite Academy, located in Avon, IN! Our school at 125 N County Road 800 E. serves families looking for trusted daycare and preschool in the [CLIENT INPUT NEEDED: neighborhood or locality name] area, between [CLIENT INPUT NEEDED: Landmark 1] and [CLIENT INPUT NEEDED: Landmark 2]. Our school includes care for Infants through School-Age and offers an On My Way Pre-K Program year-round. La Petite Academy Avon is nationally accredited by National Early Childhood Program Accreditation and is Level 4 Paths to Quality Rating.\n\nFamilies choose our school for its outdoor playtime, which gives children room to explore, build confidence, and feel comfortable from their first day. Led by [CLIENT INPUT NEEDED: Director name], our team is committed to building strong relationships with children and families. The majority of our teachers either hold degrees in early childhood education or a related field or are working toward a degree. Many educators have been part of our school community for [CLIENT INPUT NEEDED: years of staff tenure], helping children develop trusted relationships with familiar teachers.\n\nServing families in Avon, IN for [CLIENT INPUT NEEDED: years serving the community], La Petite Academy provides early education and childcare focused on supporting children's social, emotional, and academic development. We offer a safe, nurturing environment where children can learn, grow, and thrive every day. Our approach helps children build the confidence and skills needed for a successful transition to kindergarten. Get access to live streaming video of your child's classroom, plus other real-time updates, with our exclusive mobile app for families, SproutAbout. Explore our Programs section to learn more about La Petite Academy of Avon, IN. Give us a call today to schedule a tour, we cannot wait to meet you and your family!",
+ "client_inputs_needed": [
+  "[CLIENT INPUT NEEDED: neighborhood or locality name]",
+  "[CLIENT INPUT NEEDED: Landmark 1]",
+  "[CLIENT INPUT NEEDED: Landmark 2]",
+  "[CLIENT INPUT NEEDED: Director name]",
+  "[CLIENT INPUT NEEDED: years of staff tenure]",
+  "[CLIENT INPUT NEEDED: years serving the community]"
+ ],
+ "preserved_sentences": [
+  "Welcome to La Petite Academy, located in Avon, IN!",
+  "Our school includes care for Infants through School-Age and offers an On My Way Pre-K Program year-round.",
+  "La Petite Academy Avon is nationally accredited by National Early Childhood Program Accreditation and is Level 4 Paths to Quality Rating.",
+  "The majority of our teachers either hold degrees in early childhood education or a related field or are working toward a degree.",
+  "Get access to live streaming video of your child's classroom, plus other real-time updates, with our exclusive mobile app for families, SproutAbout.",
+  "Give us a call today to schedule a tour, we cannot wait to meet you and your family!"
+ ],
+ "gap_notes": [
+  "GEO_04/GEO_06/GEO_07: locality and both landmarks left as client-input markers; no facts available.",
+  "GEO_05: street address 125 N County Road 800 E. added from verified identity.",
+  "LEAD_01/LEAD_02: director name inserted as marker; director experience years not worked in because no data exists and the template has no slot for it. Needs client input.",
+  "LEAD_03/QUAL_04: years serving community and staff tenure left as markers.",
+  "QUAL_02/QUAL_03: accreditation and Level 4 Paths to Quality preserved; no awards in fact sheet, so none claimed.",
+  "FAC_01: outdoor playtime used as facility highlight and differentiator, the only fact-sheet data.",
+  "SAFE_01: safe, nurturing environment line and SproutAbout app used from the fact sheet.",
+  "KW_01/KW_03/KW_04/SKW_01: daycare, preschool, childcare and early education appear exactly. The phrase 'child care' appears only as 'childcare'; the template wording supports that form.",
+  "SKW_04/THM_02/THM_08: kindergarten transition and confidence-building covered with template generic wording.",
+  "THM_01: Programs section referenced.",
+  "THM_04/THM_07: family relationships and school approach covered with template wording.",
+  "Not covered because they would require facts not in the sheet: KW_05, SKW_03, SKW_07, SKW_10, SKW_17 (flexible care, licensing, tuition assistance, affordability), INC_01, INC_04, INC_06, INC_07 (meals, hours, enrichments, bus). CCDF voucher acceptance in the current text was not retained since it was not on the preserve list. Remaining thematic keywords (SKW_05, 08, 09, 11, 12, 13, 14, 15, 16) were not forced in to avoid unsupported claims and stay within the word limit."
+ ],
+ "guard_flags": [],
+ "word_count": 290,
+ "writer_model": "anthropic/claude-sonnet-5.5",
+ "writer_version": "1.0.0"
+}

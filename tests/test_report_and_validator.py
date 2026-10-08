@@ -108,19 +108,35 @@ class TestValidatorSeeds:
         out = build(tmp_path, [card("5002")])
         wb = openpyxl.load_workbook(out)
         wb["04_Remediation_Queue"].append(
-            ["5002", "School 5002", "Tier 2", "GEO_04", "Locality", "High",
-             "CREATE NEW CONTENT", 'ADD locality "Bridle Trails" to the Welcome.',
-             "sabotaged"])
+            ["5002", "School 5002", "http://x", "Tier 2", "GEO_04", "Locality",
+             "High", "CREATE NEW CONTENT",
+             'ADD locality "Bridle Trails" to the Welcome.', "sabotaged"])
         wb.save(out)
         v = self.validate(out)
         assert any("V3" in x and "Bridle Trails" in x for x in v)
+
+    def test_quoted_page_evidence_is_exempt(self, tmp_path):
+        # A MOVE row may QUOTE the school's own page even when the quote
+        # contains a register/NEARBY word — that is evidence, not prescription.
+        p = param_row("KW_01", "Daycare", "MOVE_OR_SURFACE", w="ABSENT",
+                      r="PRESENT", pev="quality daycare here")
+        out = build(tmp_path, [card("5002", {"KW_01": p})])
+        wb = openpyxl.load_workbook(out)
+        wb["04_Remediation_Queue"].append(
+            ["5002", "School 5002", "http://x", "Tier 2", "GEO_05", "Street",
+             "High", "MOVE / SURFACE",
+             "Copy already exists — surface it. Page evidence: our campus at "
+             "4580 Bridle Trails Rd near Kirkland city line", "page quote"])
+        wb.save(out)
+        assert self.validate(out) == []
 
     def test_nearby_name_in_queue_caught(self, tmp_path):
         out = build(tmp_path, [card("5001")])
         wb = openpyxl.load_workbook(out)
         wb["04_Remediation_Queue"].append(
-            ["5001", "School 5001", "Tier 2", "GEO_04", "Locality", "High",
-             "CREATE NEW CONTENT", "Mention nearby Kirkland families.", "sabotaged"])
+            ["5001", "School 5001", "http://x", "Tier 2", "GEO_04", "Locality",
+             "High", "CREATE NEW CONTENT", "Mention nearby Kirkland families.",
+             "sabotaged"])
         wb.save(out)
         v = self.validate(out)
         assert any("V4" in x and "Kirkland" in x for x in v)
@@ -129,8 +145,9 @@ class TestValidatorSeeds:
         out = build(tmp_path, [card("5001")])
         wb = openpyxl.load_workbook(out)
         wb["04_Remediation_Queue"].append(
-            ["5001", "School 5001", "Tier 2", "GEO_06", "Landmark 1", "High",
-             "CREATE NEW CONTENT", "Say you are across from Starbucks.", "sabotaged"])
+            ["5001", "School 5001", "http://x", "Tier 2", "GEO_06", "Landmark 1",
+             "High", "CREATE NEW CONTENT", "Say you are across from Starbucks.",
+             "sabotaged"])
         wb.save(out)
         v = self.validate(out)
         assert any("V5" in x for x in v)
@@ -157,3 +174,82 @@ class TestValidatorSeeds:
                             r="PRESENT", pev="=cmd|' /C calc'!A0 \x07bell")
         out = build(tmp_path, [card("5001", {"KW_01": hostile})])
         assert self.validate(out) == []
+
+
+class TestPresencePivots:
+    def make(self, tmp_path):
+        p = param_row("KW_01", "Daycare", "KEEP_REINFORCE", w="PRESENT", r="ABSENT")
+        p["welcome_evidence"] = "quality daycare in Jacksonville"
+        p["page_evidence"] = "quality daycare in Jacksonville"  # welcome fallback
+        q = param_row("GEO_04", "Locality", "NOT_APPLICABLE", w="N_A", r="N_A")
+        c = card("5001", {"KW_01": p, "GEO_04": q})
+        out = tmp_path / "pivot.xlsx"
+        ReportGenerator(out, locality_register=REGISTER, nearby_names=NEARBY,
+                        school_urls={"5001": "https://example.com/school-5001/"}) \
+            .generate_report([c], PARAMS, run_context={"config_hash": "h"})
+        return openpyxl.load_workbook(out)
+
+    def test_pivot_sheets_exist_with_urls(self, tmp_path):
+        wb = self.make(tmp_path)
+        for name in ("07_Welcome_Presence_Pivot", "08_Page_Excl_Welcome_Pivot"):
+            ws = wb[name]
+            hdr = [c.value for c in ws[1][:3]]
+            assert hdr == ["School ID", "School Name", "School URL"]
+            assert ws["C2"].value == "https://example.com/school-5001/"
+
+    def test_welcome_present_embeds_quote_and_rest_shows_absent(self, tmp_path):
+        wb = self.make(tmp_path)
+        pids = [p["id"] for p in PARAMS]
+        col = 4 + pids.index("KW_01")
+        wel = wb["07_Welcome_Presence_Pivot"].cell(row=2, column=col).value
+        rest = wb["08_Page_Excl_Welcome_Pivot"].cell(row=2, column=col).value
+        assert wel.startswith("PRESENT — \"quality daycare")
+        # whole-page-content sheet does NOT count the welcome section:
+        assert rest == "ABSENT"
+
+    def test_na_cells(self, tmp_path):
+        wb = self.make(tmp_path)
+        pids = [p["id"] for p in PARAMS]
+        col = 4 + pids.index("GEO_04")
+        assert wb["07_Welcome_Presence_Pivot"].cell(row=2, column=col).value == "N_A"
+
+    def test_pivot_headers_have_hover_tooltips(self, tmp_path):
+        wb = self.make(tmp_path)
+        ws = wb["07_Welcome_Presence_Pivot"]
+        pids = [p["id"] for p in PARAMS]
+        col = 4 + pids.index("GEO_06")
+        comment = ws.cell(row=1, column=col).comment
+        assert comment is not None
+        assert "Landmark 1" in comment.text  # hover shows the parameter name
+
+    def test_welcome_present_absent_lists(self, tmp_path):
+        wb = self.make(tmp_path)
+        ws = wb["09_Welcome_Present_Absent"]
+        hdr = [c.value for c in ws[1]]
+        assert hdr == ["School ID", "School Name", "School URL", "Welcome Source",
+                       "Present", "Partial", "Absent", "Absent on Whole Page"]
+        # welcome-absent but page-present (MOVE case) must NOT be in column H
+        row0 = next(ws.iter_rows(min_row=2, values_only=True))
+        assert "Daycare" not in str(row0[7]) or str(row0[7]) == "(none)"
+        row = next(ws.iter_rows(min_row=2, values_only=True))
+        present, absent = str(row[4]), str(row[6])
+        assert "Daycare" in present                # fixture: PRESENT in welcome
+        assert "KW_01" not in present + absent     # names only, no parameter IDs
+        assert "Locality" not in present + absent  # N_A stays out of all lists
+
+    def test_every_header_cell_has_hover_meaning(self, tmp_path):
+        wb = self.make(tmp_path)
+        missing = []
+        for ws in wb.worksheets:
+            for cell in ws[1]:
+                if cell.value is None:
+                    continue
+                if cell.comment is None:
+                    missing.append(f"{ws.title}!{cell.coordinate} {cell.value!r}")
+        assert missing == [], f"headers without tooltip: {missing[:10]}"
+
+    def test_column_dictionary_in_run_summary(self, tmp_path):
+        wb = self.make(tmp_path)
+        vals = [str(r[0]) for r in wb["00_Run_Summary"].iter_rows(values_only=True) if r[0]]
+        assert any(v.startswith("COLUMN DICTIONARY") for v in vals)
+        assert "07_Welcome_Presence_Pivot" in vals  # dictionary covers new sheets
